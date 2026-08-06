@@ -583,54 +583,43 @@
        CERTIFICATE VERIFICATION LOGIC
   ============================================= -->
   <script>
-    const validCerts = [
-"JSONS-2026-08001",
-  "JSONS-2026-08002",
-  "JSONS-2026-08003",
-  "JSONS-2026-08004",
-  "JSONS-2026-08005",
-  "JSONS-2026-08006",
-  "JSONS-2026-08007",
-  "JSONS-2026-08008",
-  "JSONS-2026-08009",
-  "JSONS-2026-08010",
-  "JSONS-2026-08011",
-  "JSONS-2026-08012",
-  "JSONS-2026-08013",
-  "JSONS-2026-08014",
-  "JSONS-2026-08015",
-  "JSONS-2026-08016",
-  "JSONS-2026-08017",
-  "JSONS-2026-08018",
-  "JSONS-2026-08019",
-  "JSONS-2026-08020"
-      // Add more: "JSONS-2026-00003",
-    ];
+const certData = {
+  "JSONS-2026-08001": { name: "S.JOHAN CALEB", duration: "1 month", course: "MS Office" },
+  "JSONS-2026-08002": { name: "B. LAVANYA", duration: "1 month", course: "Python Programming" },
+  "JSONS-2026-08003": { name: "G. VIJAYA SELVI", duration: "1 month", course: "MS Office" },
+  "JSONS-2026-08004": { name: "K. VANITHA", duration: "1 month", course: "Python Programming" },
+  "JSONS-2026-08005": { name: "S. DHARSHINI", duration: "1 month", course: "Python Programming" },
+  "JSONS-2026-08006": { name: "L. SHIRLEY JUDITH", duration: "1 month", course: "MS Office" },
+  "JSONS-2026-08007": { name: "L. SANDRA SOPHIE", duration: "1 month", course: "MS Office" },
+  "JSONS-2026-08008": { name: "P. BALA CHANDRU", duration: "1 month", course: "Python Programming" },
+  "JSONS-2026-08009": { name: "A. GOKULA KRISHNAN", duration: "1 month", course: "Python Programming" },
+  // Add additional entries following this structure...
+};
 
-    function verifyCert() {
-      const input = document.getElementById("certInput").value.trim().toUpperCase();
-      const result = document.getElementById("certResult");
+function verifyCert() {
+  const input = document.getElementById("certInput").value.trim().toUpperCase();
+  const result = document.getElementById("certResult");
 
-      if (!input) {
-        result.className = "cert-result invalid";
-        result.textContent = "Please enter a certificate number.";
-        return;
-      }
+  if (!input) {
+    result.className = "cert-result invalid";
+    result.textContent = "Please enter a certificate number.";
+    return;
+  }
 
-      if (validCerts.includes(input)) {
-        result.className = "cert-result valid";
-        result.textContent =
-          "✅ Certificate " + input + " is valid — issued by JSONS Academy. For More Information Call: +91 91599 26299";
-      } else {
-        result.className = "cert-result invalid";
-        result.textContent =
-          "❌ Certificate number not found. Please check and try again, or contact us directly.";
-      }
-    }
+  const cert = certData[input];
 
-    document.getElementById("certInput").addEventListener("keydown", function(e) {
-      if (e.key === "Enter") verifyCert();
-    });
+  if (cert) {
+    result.className = "cert-result valid";
+    result.textContent = `✅ Certificate ${input} is certified to ${cert.name} who has completed ${cert.duration} ${cert.course} Training with JSONS ACADEMY. For More Information Call: +91 91599 26299`;
+  } else {
+    result.className = "cert-result invalid";
+    result.textContent = "❌ Certificate number not found. Please check and try again, or contact us directly.";
+  }
+}
+
+document.getElementById("certInput").addEventListener("keydown", function(e) {
+  if (e.key === "Enter") verifyCert();
+});
   </script>
 
 </body>
